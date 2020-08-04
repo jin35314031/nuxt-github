@@ -62,9 +62,9 @@ export default {
     proxy: true
   },
   proxy:{
-    '/api/':{
+    '':{
       target:'http://localhost:8080/employees',
-      pathRewrite: {'^/api/': ''},
+      /*pathRewrite: {'^/api/': ''},*/
     }
   },
   /*
