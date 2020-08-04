@@ -59,12 +59,18 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    proxy: true
+     proxy: true
   },
+  // proxy:{
+  //    '/employees':{
+  //      target:'http://localhost:8080/employees',
+  //      pathRewrite: {'^/employees/': ''}
+  //    }
+  // },
   proxy:{
-    '':{
-      target:'http://localhost:8080/employees',
-      /*pathRewrite: {'^/api/': ''},*/
+    '/employees':{
+      target:'http://localhost:8080',
+      pathRewrite: {'^/employees/': ''}
     }
   },
   /*
