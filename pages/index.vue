@@ -1,28 +1,29 @@
 <template>
   <div class="container">
     <p>{{ $store.state.employees.employees }}</p>
-    //<button v-on:click="$store.dispatch('employees/updateEmployeesAction')">Delete</button>
+    <ul v-for="employee in employees">
+       <li>
+          {{employee}}
+          <button v-on:click="$store.dispatch('employees/deleteEmployeesAction',employee.id)">Delete</button>
+       </li>
+    </ul>
+
   </div>
 </template>
 
 <script>
 
 export default {
-
-//computed: {
-//  load:function () {
-//    return this.$store.state.employees.employees
-//  }
-   //$store.dispatch('employees/updateEmployeesAction')
-// }
-
 mounted: function () {
-  this.$store.dispatch('employees/updateEmployeesAction')
- }
+   this.$store.dispatch('employees/updateEmployeesAction');
+ },
+
+computed: {
+    employees() {
+      return this.$store.state.employees.employees;
+    }
+  }
 }
-
-
-
 
 </script>
 
