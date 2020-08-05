@@ -3,8 +3,15 @@ import proxy from '@nuxtjs/proxy'
 import Vuex from 'vuex'
 
 export const state = () => ({
-  employees: []
+  employees: [{id:1,name:'defaultName1',role:'defaultRole'},{id:2,name:'defaultName2',role:'defaultRole'},]
+
 })
+
+export const getters ={
+  getState:function(state){
+    return state.employees
+  }
+}
 
 export const mutations = {
   updateEmployees:function(state,payload){
@@ -13,7 +20,7 @@ export const mutations = {
 }
 
 export const actions = {
-   async updateEmployeesAction (context) {
+   async getEmployeesAction (context) {
      const payload = await this.$axios.get('/api/employees')
      context.commit('updateEmployees', payload.data)
    },
@@ -27,7 +34,10 @@ export const actions = {
      await this.$axios.post('/api/employees',createEmployee)
      const payload = await this.$axios.get('/api/employees')
      context.commit('updateEmployees',payload.data)
-   }
+   },
+   async updateEmployeesAction(context,updateEmployee){
+     console.log(updateEmployee)
+    }
 }
 
 
