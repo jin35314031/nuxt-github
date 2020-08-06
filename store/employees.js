@@ -3,15 +3,9 @@ import proxy from '@nuxtjs/proxy'
 import Vuex from 'vuex'
 
 export const state = () => ({
-  employees: [{id:1,name:'defaultName1',role:'defaultRole'},{id:2,name:'defaultName2',role:'defaultRole'},]
+  employees: []
 
 })
-
-export const getters ={
-  getState:function(state){
-    return state.employees
-  }
-}
 
 export const mutations = {
   updateEmployees:function(state,payload){
@@ -24,23 +18,21 @@ export const actions = {
      const payload = await this.$axios.get('/api/employees')
      context.commit('updateEmployees', payload.data)
    },
-  　async deleteEmployeesAction(context,employeeId){
+  　async deleteEmployeesAction({ commit, dispatch },employeeId){
      await this.$axios.delete('/api/employees/'+employeeId)
-     const payload = await this.$axios.get('/api/employees')
-     context.commit('updateEmployees',payload.data)
+     //const payload = await this.$axios.get('/api/employees')
+     //context.commit('updateEmployees',payload.data)
+     dispatch('getEmployeesAction')
    },
-   async createEmployeesAction(context,createEmployee){
+   async createEmployeesAction({ commit, dispatch },createEmployee){
      await this.$axios.post('/api/employees',createEmployee)
-     const payload = await this.$axios.get('/api/employees')
-     context.commit('updateEmployees',payload.data)
+     dispatch('getEmployeesAction')
    },
-   async updateEmployeesAction(context,updateEmployee){
-     //console.log(updateEmployee)
+   async updateEmployeesAction({ commit, dispatch },updateEmployee){
+     console.log('update!')
      const updateEmployeeBody = {name:updateEmployee.name,role:updateEmployee.role}
      await this.$axios.put('/api/employees/'+updateEmployee.id,updateEmployeeBody)
-     const payload = await this.$axios.get('/api/employees')
-     context.commit('updateEmployees',payload.data)
-
+     dispatch('getEmployeesAction')
     }
 }
 

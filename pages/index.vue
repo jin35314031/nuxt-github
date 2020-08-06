@@ -29,37 +29,19 @@ export default {
       createEmployee:{
         name:'',
         role:''
-      },
-      updateEmployee:{
-        id:'',
-        name:'',
-        role:''
       }
     }
   },
+
   mounted: function () {
-    console.log('mounted')
     this.$store.dispatch('employees/getEmployeesAction');
   },
 
   computed: {
-    //employees: {
-  	//		  get () {
-  	//		  	return this.$store.state.employees.employees
-  	//	  	},
-  	//		  set (value) {
-  	//		  	this.$store.commit('updateEmployeesAction', value)
-  	//		  }
-  	//	  }
     employees() {
-      console.log('computed')
+      //console.log('computed')
       return this.$store.state.employees.employees;
      }
-
-    //employees(){
-    //  console.log('computed')
-    //  return this.$store.getters.employees
-    //}
   }
 }
 
