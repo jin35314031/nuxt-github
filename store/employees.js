@@ -25,7 +25,6 @@ export const actions = {
      context.commit('updateEmployees', payload.data)
    },
   　async deleteEmployeesAction(context,employeeId){
-     const url = '/employees/'+employeeId
      await this.$axios.delete('/api/employees/'+employeeId)
      const payload = await this.$axios.get('/api/employees')
      context.commit('updateEmployees',payload.data)
@@ -36,7 +35,12 @@ export const actions = {
      context.commit('updateEmployees',payload.data)
    },
    async updateEmployeesAction(context,updateEmployee){
-     console.log(updateEmployee)
+     //console.log(updateEmployee)
+     const updateEmployeeBody = {name:updateEmployee.name,role:updateEmployee.role}
+     await this.$axios.put('/api/employees/'+updateEmployee.id,updateEmployeeBody)
+     const payload = await this.$axios.get('/api/employees')
+     context.commit('updateEmployees',payload.data)
+
     }
 }
 

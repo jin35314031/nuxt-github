@@ -43,18 +43,18 @@ export default {
   },
 
   computed: {
-    employees: {
-  			  get () {
-  			  	return this.$store.state.employees.employees
-  		  	},
-  			  set (value) {
-  			  	this.$store.commit('updateEmployeesAction', value)
-  			  }
-  		  }
-    //employees() {
-    //  console.log('computed')
-    //  return this.$store.state.employees.employees;
-    // }
+    //employees: {
+  	//		  get () {
+  	//		  	return this.$store.state.employees.employees
+  	//	  	},
+  	//		  set (value) {
+  	//		  	this.$store.commit('updateEmployeesAction', value)
+  	//		  }
+  	//	  }
+    employees() {
+      console.log('computed')
+      return this.$store.state.employees.employees;
+     }
 
     //employees(){
     //  console.log('computed')
